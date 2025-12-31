@@ -2,6 +2,7 @@ package com.eaglebank.user.api.transaction.service;
 
 import com.eaglebank.user.api.account.persistence.AccountEntity;
 import com.eaglebank.user.api.account.persistence.AccountRepository;
+import com.eaglebank.user.api.common.dto.Currency;
 import com.eaglebank.user.api.common.exception.ForbiddenException;
 import com.eaglebank.user.api.common.exception.NotFoundException;
 import com.eaglebank.user.api.common.exception.UnprocessableEntityException;
@@ -21,7 +22,6 @@ import java.util.UUID;
 @Service
 public class TransactionService
 {
-	private static final String GBP = "GBP";
 	private final AccountRepository accountRepository;
 	private final TransactionRepository transactionRepository;
 
@@ -43,7 +43,7 @@ public class TransactionService
 			throw new NotFoundException("Account was not found");
 		});
 
-		if (!GBP.equals(request.currency().name()))
+		if(!Currency.GBP.equals(request.currency()))
 		{
 			throw new UnprocessableEntityException("Only GBP is supported");
 		}
