@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: eaglebank-postgres
+    environment:
+      POSTGRES_DB: eaglebank
+      POSTGRES_USER: eagle
+      POSTGRES_PASSWORD: eagle
+    ports:
+      - "5432:5432"
